@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?><graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="weight" attr.type="double" for="edge" id="d2" />
+  <key attr.name="weight" attr.type="int" for="node" id="d1" />
+  <key attr.name="weight" attr.type="double" for="node" id="d0" />
+  <graph edgedefault="undirected">
+    <node id="valeriabet">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="usuariosdigital">
+      <data key="d1">1</data>
+    </node>
+    <node id="mgsbruno">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="CataFairuzi">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="acaoJA">
+      <data key="d1">0</data>
+    </node>
+    <node id="CanalDoOtario">
+      <data key="d1">0</data>
+    </node>
+    <node id="irosasr">
+      <data key="d1">1</data>
+    </node>
+    <node id="Remanescente1">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="carolburle">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="OpiceBlum">
+      <data key="d1">0</data>
+    </node>
+    <node id="ivetecaetano">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="BoldriniDouglas">
+      <data key="d1">0</data>
+    </node>
+    <node id="joao_arruda">
+      <data key="d0">2.0</data>
+    </node>
+    <node id="thirodrigo285">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="mariaap30978698">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="DanielFinizola">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="RenatoOpiceBlum">
+      <data key="d1">1</data>
+    </node>
+    <node id="cgoeslima">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="juh_barradas">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="corvolinoPUNK">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="enfanaleao">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="caffsouza">
+      <data key="d1">0</data>
+    </node>
+    <node id="EspiritoLivre">
+      <data key="d1">0</data>
+    </node>
+    <node id="javierpallero">
+      <data key="d1">0</data>
+    </node>
+    <node id="eleorabinovich">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="DerechoLineas">
+      <data key="d0">2.0</data>
+    </node>
+    <node id="PTcard">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="Gleidimm">
+      <data key="d1">0</data>
+    </node>
+    <node id="minutoecommerce">
+      <data key="d1">0</data>
+    </node>
+    <node id="GDCaruaru">
+      <data key="d1">0</data>
+    </node>
+    <node id="Boca_Maldita">
+      <data key="d0">3.0</data>
+    </node>
+    <node id="patriciapeckadv">
+      <data key="d1">0</data>
+    </node>
+    <node id="AdeiltonCirino">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="DoValleErick">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="Dotstore">
+      <data key="d0">2.0</data>
+    </node>
+    <node id="alfredovelazco">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="angela_gim">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="diegorrcc">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="joaopaulo_pt">
+      <data key="d1">0</data>
+    </node>
+    <node id="gpmeneses">
+      <data key="d0">1.0</data>
+    </node>
+    <node id="rchubie">
+      <data key="d0">1.0</data>
+    </node>
+    <edge source="valeriabet" target="irosasr">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="usuariosdigital" target="irosasr">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="usuariosdigital" target="alfredovelazco">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="mgsbruno" target="RenatoOpiceBlum">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="CataFairuzi" target="BoldriniDouglas">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="acaoJA" target="joao_arruda">
+      <data key="d2">2.0</data>
+    </edge>
+    <edge source="acaoJA" target="AdeiltonCirino">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="acaoJA" target="Boca_Maldita">
+      <data key="d2">3.0</data>
+    </edge>
+    <edge source="acaoJA" target="rchubie">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="CanalDoOtario" target="Remanescente1">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="CanalDoOtario" target="mariaap30978698">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="irosasr" target="DerechoLineas">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="irosasr" target="gpmeneses">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="irosasr" target="javierpallero">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="carolburle" target="diegorrcc">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="OpiceBlum" target="RenatoOpiceBlum">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="ivetecaetano" target="joaopaulo_pt">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="thirodrigo285" target="joaopaulo_pt">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="DanielFinizola" target="GDCaruaru">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="cgoeslima" target="joaopaulo_pt">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="juh_barradas" target="Gleidimm">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="corvolinoPUNK" target="EspiritoLivre">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="enfanaleao" target="joaopaulo_pt">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="caffsouza" target="diegorrcc">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="javierpallero" target="eleorabinovich">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="DerechoLineas" target="diegorrcc">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="PTcard" target="joaopaulo_pt">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="minutoecommerce" target="Dotstore">
+      <data key="d2">2.0</data>
+    </edge>
+    <edge source="patriciapeckadv" target="DoValleErick">
+      <data key="d2">1.0</data>
+    </edge>
+    <edge source="angela_gim" target="joaopaulo_pt">
+      <data key="d2">1.0</data>
+    </edge>
+  </graph>
+</graphml>
