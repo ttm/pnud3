@@ -26,18 +26,37 @@ PREFIX schema: <http://schema.org/>
 """
 
 q2="SELECT ?nome WHERE {?s rdf:type ops:Participant . ?s foaf:name ?nome .}"
-#sparql3 = SPARQLWrapper("http://localhost:82/participabr/query")
-sparql3 = SPARQLWrapper("http://200.144.255.210:8082/participabr/query")
+sparql3 = SPARQLWrapper("http://localhost:82/participabr/query")
+#sparql3 = SPARQLWrapper("http://200.144.255.210:8082/participabr/query")
 sparql3.setQuery(PREFIX+q2)
 sparql3.setReturnFormat(JSON)
 results3 = sparql3.query().convert()
 
 for i in results3["results"]["bindings"][-10:]: print(u"participante: " +i["nome"]["value"])
 
-q="SELECT ?comentario ?titulo ?texto WHERE {?comentario dc:type tsioc:Comment. ?comentario dc:title ?titulo . ?comentario schema:text ?texto}"
+q="SELECT ?comentario ?titulo ?texto WHERE {?comentario dc:type tsioc:Comment. OPTIONAL {?comentario dc:title ?titulo . } OPTIONAL {?comentario schema:text ?texto .}}"
 sparql3.setQuery(PREFIX+q)
 sparql3.setReturnFormat(JSON)
 results4 = sparql3.query().convert()
+
+import string, nltk as k
+# histograma com as palavras
+palavras=string.join([i["texto"]["value"].lower() for i in results4["results"]["bindings"]])
+exclude = set(string.punctuation)
+palavras = ''.join(ch for ch in palavras if ch not in exclude)
+palavras_=palavras.split()
+fdist=k.FreqDist(palavras_)
+print("feita primeira freq dist")
+
+stopwords = set(k.corpus.stopwords.words('portuguese'))
+palavras__=[pp for pp in palavras_ if pp not in stopwords]
+fdist_=k.FreqDist(palavras__)
+print("feita segunda freq dist")
+
+stemmer = k.stem.RSLPStemmer()
+palavras___=[stemmer.stem(pp) for pp in palavras__]
+fdist__=k.FreqDist(palavras___)
+
 ##################
 # bebe comentarios do endpoint sparql.
 # guarda 10 e os classifica na mão
