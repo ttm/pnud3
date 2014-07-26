@@ -1,0 +1,149 @@
+\documentclass[12pt]{article}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{framed}
+\usepackage[T1]{fontenc}
+\usepackage[toc,page]{appendix}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{fancyvrb}
+\usepackage[hmargin=2cm,vmargin=2cm]{geometry}
+\usepackage{lastpage}
+\usepackage{makeidx}
+\pagestyle{fancy}
+
+% cabecalho e rodapé
+\setlength{\headheight}{120pt}
+\setlength{\textheight}{550pt}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{\includegraphics[scale=0.03]{brasao.png}}
+\rhead{\includegraphics[scale=0.4]{logo-pnud.png}}
+\cfoot{\textbf{\ProjectCode\ - Inovando a democracia participativa}}
+\rfoot{\thepage}
+
+\hyphenation{par-ti-ci-pa-ção}
+\bibliographystyle{ieeetr}
+
+% definições sobre o autor e o produto
+\newcommand{\MyName}{Renato Fabbri}
+\newcommand{\MySurnameForename}{Fabbri, Renato}
+\newcommand{\SupervisorName}{Gabriella Vieira Oliveira Gonçalves}
+\newcommand{\MyEmail}{renato.fabbri@gmail.com}
+\newcommand{\ContractNumber}{2013/000566}
+\newcommand{\ContractYear}{2014}
+\newcommand{\ProjectCode}{Projeto BRA/12/018}
+\newcommand{\NomeSecretaria}{Secretaria Geral da Presidência da República}
+\newcommand{\SiglaSecretaria}{SG/PR}
+\newcommand{\ProductNumber}{03}
+\newcommand{\ProductTitle}{Ferramentas assistidas de categorização de conteúdo}
+\newcommand{\ProductSubtitle}{Com base em Processamento de Linguagem Natural e de Redes Complexas, adaptadas para o ambiente do portal de participação}
+\newcommand{\ProductDescription}{"Ferramentas assistidas de categorização de conteúdo: Com base em Processamento de Linguagem Natural e de Redes Complexas, adaptadas para o ambiente do portal de participação."
+}
+\newcommand{\ProductValue}{R\$ 10,800 (dez mil e oitocentos reais)}
+\newcommand{\ObjetoContratacao}{
+Aporte de conhecimentos e tecnologias para especificação de vocabulário e ferramentas assistidas que utilizam processamento de linguagem natural e análise de redes complexas para o conteúdo do portal da participação social.
+}
+\newcommand{\DataEntrega}{27 Julho de 2014}
+\newcommand{\PalavrasChave}{reconhecimento de padrões, redes complexas, processamento de linguagem natural, participação social}
+
+% lista de abreviações
+\makeindex
+
+\begin{document}
+
+\input{folhaderosto.tex}
+\input{folhadeaprovacao.tex}
+\input{folhadeidentificacao.tex}
+\tableofcontents
+\newpage
+
+\begin{abstract}
+Este documento descreve procedimentos selecionados para categorização de conteúdo do portal federal da participação social (Participa.br). O produto relacionado no termo de referência desta consultoria preve somente propostas de especificações e códigos. Dado o aspecto prático do trabalho, estão descritas o contexto e possibilidade consideradas, asism como implementações e códigos operantes. Parte deste trabalho é acessível online via http, como os scripts no IPython Notebook e o endpoint SparQL que serve os dados do Participa.br com critérios semânticos.\\
+
+{\bf Palavras-chave:} \PalavrasChave.
+\end{abstract}
+\newpage
+
+\section{Introdução}
+\subsection{Contexto e importância da consultoria}
+Em confluência com o portal federal de participação social (Participa.br), e o Plano Nacinal de Participação Social (PNPS), esta consultoria propõe métodos de classificação e priorização de conteúdo,  e formas de auto-regulação para o portal. O presente produto apresenta uma seleção de métodos para classificação de conteúdo. Dadas a pertinência para o contexto participativo e a simplicidade, são apresentadas a classificação via 1) conectividade dos autors e 2) características dos documentos.
+\subsection{Contexto e importância do Produto}
+\begin{itemize}
+    \item Este Produto, através da classificação de conteúdos, visa 1) facilitar a assimilação das informações pelos participantes; 2) explicitar propriedades do sistema considerado; 3) permitir observação de conteúdos produzidos por nichos ou características em comum.
+    \item São esperadas a incorporação destes métodos no funcionamento do Participa.br e pelos participantes.
+    \item A especialização conectiva dos agentes sociais, e do texto produzido por indivíduos e grupos, é um fenômeno plenamente reconhecido. O aproveitamento destas diferenciações é uma realidade, mesmo ainda restrito a empresas e acadêmicos. A entrega prática destes conhecimentos ao poder federal e à sociedade capacita a democracia participativa.
+\end{itemize}
+
+\section{Desenvolvimento}
+
+O Participa.br é a Plataforma Federal da Participação Social. Trata-se de mais
+um espaço para participação social no Brasil, escuta e diálogo entre o Governo
+Federal e a Sociedade Civil. 
+
+A plataforma, totalmente desenvolvida em software livre, tem como missão
+desenvolver práticas inovadoras de participação via internet e oferta de
+espaços de manifestação e debate para qualquer cidadão ou organização, com o
+intuito de construir políticas públicas cada vez mais eficazes e efetivas.
+
+O Participa.br é desenvolvido sob a plataforma para redes sociais Noosfero.
+
+\subsection{O Noosfero}
+
+O Noosfero é uma plataforma web livre para redes sociais e de economia
+solidária que possui as funcionalidades de Blog, e-Portfolios, CMS, RSS,
+discussão temática, agenda de eventos e inteligência econômica colaborativa
+num mesmo sistema! O Noosfero utiliza a linguagem de programação Ruby com
+framework Rails e, portanto, suporta bancos de dados, PostgreSQL, MySQL,
+SQLite entre outros.
+
+Noosfero é um Software Livre e licenciado sob a GNU Affero General Public
+License (AGPL), versão 3\cite{wikipediaSingleSignOn}.
+
+\subsection{Aplicativos para trilhas de participação}
+ 
+O Participa.br utiliza algumas ferramentas como mecanismo de participação,
+essas ferramentas permitem aos usuários da rede contribuir através de
+comentários, votos ou diretamente sugerindo textos e conteúdos \index{cms}.
+%\newacronym{cms}{CMS}{Content Management System}
+
+Estas ferramentas são organizadas em trilhas de participação, uma trilha
+pode utilizar uma ou mais ferramentas e podem ter datas de de início e fim de
+participação, dando assim um fluxo para a participação social \index{cms}
+
+Nas próximas seções será apresentado 2 propostas de ferramentas ou aplicativos
+para trilha de participação \index{cms}.
+
+\subsubsection{Comentários por parágrafo}
+
+Comentário por parágrafo o usuário pode comentar em parágrafos específicos de
+um texto sugerindo alterações ou correções, ou mesmo tirando dúvidas.
+
+\subsubsection{Pairwise}
+
+Votação em pares...
+
+\section{Conclusão}
+
+Neste documento foi apresentado um \ProductDescription
+
+Lembramos que para tornar o Portal de Consulta Pública realmente um canal de
+consulta e participação popular na discussão e na definição da agenda
+prioritária do país, é necessário que além de documentação faça-se um esforço
+de movimentar as pessoar fora do ambiente virtual, para que haja um
+engajamento no uso e contribuição deste projeto de forma consistente e perene.
+
+\newpage
+\bibliography{bibliografia}
+\newpage
+\listoffigures
+\newpage
+\printindex
+\newpage
+\input{listadeanexos.tex}
+%\appendix
+%\appendixpage
+%\input{appendix.tex}
+
+\end{document}
