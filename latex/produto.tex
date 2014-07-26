@@ -77,67 +77,103 @@ Em confluência com o portal federal de participação social (Participa.br), e 
 \end{itemize}
 
 \section{Desenvolvimento}
+\subsection{Etapas de desenvolvimento}
+\subsubsection{Estudo ontológico e triplificação dos dados para API de acesso}
+Para viabilizar a classificação de conteúdos do portal participativo, em confluência com as propostas de web semântica desta consultoria e do Participa.br, foi necessário uma abordagem ontológica dos aspectos envolvidos no participa.br, assim como a triplificação dos dados. Para isso, a OPS (Ontologia de Participação Social) foi revisada, com melhoras substanciais, também a OPA (Ontologia do Participa.br) foi criada[1,2]. Já a representação dos dados do Participa.br em triplas RDF envolveu o uso destas e diversas outras ontologias[3].
+\subsubsection{Instanciação de um Fuseki/Jena e um IPython Notebook}
+Os dados triplificados podem ser usados diretamente em algum aplicativo ou programa. A forma padrão de disponibilizar dados em RDF, porém, é através de um endpoint, que prepara os dados na RAM para buscas especificadas via SparQL. Está online um endpoint Jena para consultas SparQL via HTTP. Também uma seleção dos scripts em Python estão disponíveis através de navegadores comuns, como o Firefox ou o Chrom(e,um). {\bf Veja os anexos}.
+\subsubsection{Classificação dos textos (mineração de texto / processamento de linguagem natural)}
+As possibilidades de classificação de conteúdo com base nos textos são inúmeras. Nesta subsubseção, são apontados alguns dos caminhos considerados.
+\begin{itemize}
+    \item Através de uso de textos previamente classificados, pode-se treinar classificadores automatizados. Este é o chamado “aprendizado supervisionado” de máquina. As técnicas atualmente em uso são inúmeras (redes neurais, algorítmos genéticos, etc). Para  exemplificação, foi implementado uma aprendizagem Bayesiana. {\bf Veja nos anexos}.
+    \item A classificação de objetos não classificados previamente, com base nas propriedades dos objetos somente, é conhecido como “aprendizado não supervisionado”. Pode-se impor a existencia de 2 classes (com base no balanço estrutural[easley]), ou mais classes, de forma a maximizar a dispersão inter-classe e diminuir a dispersão intra-classe. Este processo pode ser útil para observar nichos nas atividades, mesmo sem um conjunto de mensagens classificadas de antemão.
+    \item Classificação de mensagens similares às escolhidas. Esta distância pode ser euclidiana no espaço de contagem de palavras, ou calculada via redes semânticas (e.g. wordnet).
+    \item Classificação via contexto similar da palavra ou via simples incidência da palavra. Como buscadores usuais, com capacidades mais amplas para lidar com contexto (outras palavras, tipo de autor, classificação da mensagem).
+    \item Ranqueamentos para mensagens, autores e palavras:
+\begin{itemize}
+        \item Mais adjetivos, mais substantivos, mais pontuações, etc. 
+        \item Maior tamanho médio das palavras ou variedade de tamahos (desvio padrão). {\bf Ver nos anexos}.
+        \item Frases mais longas em caracteres ou em palavras, variedade de tamanhos (desvio padrão).
+        \item Uso de limiares para o rankeamento, p.ex.: os participantes que mais usam adjetivos (ou escrevem mensagens de mobilização) dentre os que possuem mais de 10 mensagens. {\bf Ver nos anexos}.
+        \item 
+\end{itemize}
+\end{itemize}
+\subsubsection{Classificação dos agentes pela conectividade (Redes Complexas)}
+\begin{itemize}
+    \item Em geral, as redes formadas com rastros de atividade digital são: redes de interação ou redes de relações. No participa, há, em especial, a rede de amizades entre os usuários (relações) e redes de interação: quem responde quem, etc. {\bf Ver nos anexos}.
+    \item Pode-se classificar os usuários por comunidades detectadas nas redes. {\bf Ver nos anexos}.
+    \item Ranqueamento por centralidade é um dos recursos mais comuns. Há medidas de centralidade com base da conectividade (grau), intermediação (betweeness) proximidade (closeness) e outras medidas. {\bf Ver nos anexos}.
+    \item As redes sociais, por serem em geral “livres de escala”, possuem especialização dos agentes, canonicamente pensado em “hubs”, “intermediários” e “periféricos”. Estes setores podem ser obtidos com mais propriedade comparando o histograma de conectividade da rede real com uma Erdös-Renyi com o mesmo número de vértices e arestas. {\bf Ver nos anexos}.
+\end{itemize}
+\subsubsection{Combinação de medidas de RC, PLN e outras}
+\begin{itemize}
+    \item As medidas de redes e de texto podem ser combinadas para melhorar a qualidade dos classificadores de mensagem. As estabilidades nestas medidas sugerem que hajam outliers[][].
+    \item Medidas de uso do sítio e do perfil do participante podem enriquecer os classificadores.
+\end{itemize}
+\subsubsection{Aquisição de dados classificados}
+Para o aprendizado supervisionado (etiquetação automática, análise de semtimento, etc), é utilizado um conjunto de dados etiquetados de antemão, para “treinar” o classificador.
+Nas áreas de comunicação e monitoramento, são etiquetadas à mão as mensagens como positivas, negativas e neutras e em outras classes de interesse (e.g. geolocalizações, assuntos). Os autores são classificados em personas (autor masculino, feminino, ativista, militante, curioso, etc). Esta classificação manual pode servir para treinar um classificador, especialmente se revisada por uma ou mais pessoas.
+\subsection{Justificativa do método}
+\begin{itemize}
+    \item Classificações mais fundamentais: os métodos utilizados (bag-of-words, aprendizado bayesiano, medidas de grau e betweenness) são as mais usuais, além de facilitar a comparação e estabelecimento de benchmarks, possuem eficiência conhecida e significados mais facilmente compartilhados.
+    \item Amadurecimento com equipe do Participa.br: há outros consultores e integrantes da SG/PR, e da sociedade civil, que compõem ou se comunicam com a equipe do Participa.br. Neste contexto, foram propostas e amadurecidas diversas possibilidades de classificação de conteúdos. Neste processo, foi decantado esta seleção, apresentada neste Produto.
+\end{itemize}
+\subsection{Justificativa das fontes}
+\begin{itemize}
+    \item Pesquisa científica: o autor é pesquisador nas áreas relacionadas com produção bibliográfica em revistas internacionais e em circulação nacional.
+    \item Os frameworks computacionais utilizados (nltk, networkx, rdflib, jena, etc) são amadurecidos no mundo todo, em desenvolvimento aberto, com comunidades em constante e pública discussão.
+    \item A equipe do Participa.br é a equipe da SG/PR voltada para a participação social. Desta equipe provém boa parte dos avanços na participação social.
+\end{itemize}
+\subsection{Confronto entre os resultados esperados e os alcançados}
+Este Produto preve “propostas de especificações e códigos” de classificação de conteúdo do Participa.br. Este Produto compreende estas propostas. Há, além disso, alguns resultados alcançados a mais:
+\begin{itemize}
+    \item Propostas operantes em códigos online, já integrado aos dados semânticos e disponibilização via endpoint SparQL.
+    \item Interfaces/frontends já estudadas para gráficos, reatividade e streaming (meteor+d3) [][].
+    \item Entrega, através dos resultados dos scripts, de uma breve análise do Participa.br em termos dos rastros digitais, dos conteúdos e dos usuários. {\bf Ver anexos}.
+\end{itemize}
 
-O Participa.br é a Plataforma Federal da Participação Social. Trata-se de mais
-um espaço para participação social no Brasil, escuta e diálogo entre o Governo
-Federal e a Sociedade Civil. 
+Este documento e os scripts foram reunidos em um repositório git público usual[].
 
-A plataforma, totalmente desenvolvida em software livre, tem como missão
-desenvolver práticas inovadoras de participação via internet e oferta de
-espaços de manifestação e debate para qualquer cidadão ou organização, com o
-intuito de construir políticas públicas cada vez mais eficazes e efetivas.
-
-O Participa.br é desenvolvido sob a plataforma para redes sociais Noosfero.
-
-\subsection{O Noosfero}
-
-O Noosfero é uma plataforma web livre para redes sociais e de economia
-solidária que possui as funcionalidades de Blog, e-Portfolios, CMS, RSS,
-discussão temática, agenda de eventos e inteligência econômica colaborativa
-num mesmo sistema! O Noosfero utiliza a linguagem de programação Ruby com
-framework Rails e, portanto, suporta bancos de dados, PostgreSQL, MySQL,
-SQLite entre outros.
-
-Noosfero é um Software Livre e licenciado sob a GNU Affero General Public
-License (AGPL), versão 3\cite{wikipediaSingleSignOn}.
-
-\subsection{Aplicativos para trilhas de participação}
- 
-O Participa.br utiliza algumas ferramentas como mecanismo de participação,
-essas ferramentas permitem aos usuários da rede contribuir através de
-comentários, votos ou diretamente sugerindo textos e conteúdos \index{cms}.
-%\newacronym{cms}{CMS}{Content Management System}
-
-Estas ferramentas são organizadas em trilhas de participação, uma trilha
-pode utilizar uma ou mais ferramentas e podem ter datas de de início e fim de
-participação, dando assim um fluxo para a participação social \index{cms}
-
-Nas próximas seções será apresentado 2 propostas de ferramentas ou aplicativos
-para trilha de participação \index{cms}.
-
-\subsubsection{Comentários por parágrafo}
-
-Comentário por parágrafo o usuário pode comentar em parágrafos específicos de
-um texto sugerindo alterações ou correções, ou mesmo tirando dúvidas.
-
-\subsubsection{Pairwise}
-
-Votação em pares...
+\section{Usos dos resultados}
+O próximo Produto desta mesma consultoria possui foco na utilização destas classificações. Exemplos de usos estão topificados abaixo.
+\begin{itemize}
+    \item Navegação dos conteúdos do portal: facilitar a aquisição das informações de interesse; permite observar o conteúdo com base em características dos participantes (e.g. hub, periférico, intermediarios) ou dos conteúdos (e.g. fração de adjetivos ou classificada com rótulos X ou Y).
+    \item Enriquecimento do legado semântico do Participa.br e outros portais: boa parte dos cálculos, necessário para obtenção das estatísticas e classificações, requerem recursos computacionais poderosos e técnicas nada triviais. Assim, os resultados podem ser disponibilizados junto aos dados, em RDF.
+    \item Atribuição de função: através das estatísticas dos grupos, pode-se recompensar atores  ou convidá-los para atividades ou funções especiais.
+    \item Resumos: usualmente dashboards, redes ou relações de palavras, visões gerais da entidade de interesse. A entidade pode ser um portal, uma comunidade, um usuário, uma trilha participativa. Estes resumos são bastante úteis para valorizar as instâncias e orientar os participantes.
+    \item Coleta destas informações para usos/ações: difusão de mídia, consultas, propostas, estudos, etc.
+\end{itemize}
 
 \section{Conclusão}
-
-Neste documento foi apresentado um \ProductDescription
-
-Lembramos que para tornar o Portal de Consulta Pública realmente um canal de
-consulta e participação popular na discussão e na definição da agenda
-prioritária do país, é necessário que além de documentação faça-se um esforço
-de movimentar as pessoar fora do ambiente virtual, para que haja um
-engajamento no uso e contribuição deste projeto de forma consistente e perene.
+A categorização de conteúdo do Participa.br pode ser feita de forma distribuída. Os dados, servidos por um endpoint SparQL, podem ser analisados por frontends, como um IPython Notebook, um ScrapperWiki ou um Meteor+d3 para visualizações interativas. Foi testado um intermediário em Flask para servir os dados já formatados para o frontend. Funcionou com serviços gratuitos do Heroku, Meteor e Mongo Labs, embora com limitações e alguns impasses para desenvolvimento em nuvem. Os anexos ao final deste documento[], e o repositório git[] são os resumos principais do Produto.
+\subsection{Comentários, sugestões, recomendações}
+\begin{itemize}
+    \item Para boas aplicações de classificadores de conteúdo, é necessário uma quantidade grande de conteúdo classificado previamente, geralmente à mão. Assim, é pertinente a etiqeutação das mensagens com os parceiros da comunicação, para liberação junto aos dados semânticos e treino de classificadores.
+\end{itemize}
+\subsection{Impacto do Produto para a elaboração, gestão e/ou avaliação de políticas públicas de participação social}
+\begin{itemize}
+    \item Facilita a apropriação dos processos participativos através da categorização de conteúdos e observação de suas características. 
+    \item Explicita a entrega das informações para a população, para observação distribuída.
+    \item Entrega em tecnologias livres destes conhecimentos. Compostos por tecnologias livres e publicados em licença livre.
+    \item Entrega de instâncias operantes de acesso aos dados do Participa.br, em formato RDF e enriquecidos.
+    \item Semanticamente (OWL, OPS, OPA, FOAF, Dublin Core, etc).[]
+    \item Entrega destes algoritmos em forma executável em navegadores HTTP comuns, como Firefox ou Chrome(um).[]
+\end{itemize}
+\subsection{Como o Produto deverá impactar o público-alvo das políticas públicas a que se refere}
+\begin{itemize}
+    \item Permitindo navegação seletiva pelos conteúdos disponíveis.
+    \item Valorizando as instâncias e as tornando mais informativas, com resumos estatísticos e visuais.
+    \item Explicitando propriedades dos processos participativos e usos destas propriedades.
+    \item Integrando o portal federal de participação social (Participa.br) ao legado humano de dados linkados (via critérios semânticos).
+    \item Permitindo critérios funcionais para atribuição de papéis para participantes. Por exemplo, a construção de um manifesto ou resumo final pode ser feito requisitando: de periféricos, os substantivos; de hubs, os adjetivos; e de intermediários, que formem o texto com aquelas palavras. Outra possibilidade é a remuneração de hubs pela participação efetuada ou a convocação de periféricos para oxigenar o processo participativo.
+    \item Aproximando perfis técnicos pela qualidade das tecnologias utilizadas e da relevância dos dados sobre participação social.
+\end{itemize}
 
 \newpage
 \bibliography{bibliografia}
 \newpage
-\listoffigures
+%\listoffigures
+\input{listadeabreviaturas.tex}
 \newpage
 \printindex
 \newpage
