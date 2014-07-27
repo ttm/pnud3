@@ -1,0 +1,11 @@
+*.aux
+*.bbl
+*.idx
+*.old
+*.lof
+*.log
+*.toc
+*.blg
+*.ilg
+*.ind
+*.swp
