@@ -111,4 +111,3 @@ classifier = k.NaiveBayesClassifier.train(train_set)
 
 # As de incidência intermediária são consideradas as mais representativas
 # do assunto
-
