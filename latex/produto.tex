@@ -11,6 +11,7 @@
 \usepackage{fancyvrb}
 \usepackage[hmargin=2cm,vmargin=2cm]{geometry}
 \usepackage{lastpage}
+\usepackage{pdfpages}
 \usepackage{makeidx}
 \pagestyle{fancy}
 
@@ -68,7 +69,7 @@ Este documento descreve procedimentos selecionados para categorização de conte
 
 \section{Introdução}
 \subsection{Contexto e importância da consultoria}
-Em confluência com o portal federal de participação social (Participa.br), e o Plano Nacinal de Participação Social (PNPS), esta consultoria propõe métodos de classificação e priorização de conteúdo,  e formas de auto-regulação para o portal. O presente produto apresenta uma seleção de métodos para classificação de conteúdo. Dadas a pertinência para o contexto participativo e a simplicidade, são apresentadas a classificação via 1) conectividade dos autors e 2) características dos documentos.
+Em confluência com o portal federal de participação social (Participa.br), e o Plano Nacinal de Participação Social (PNPS), esta consultoria propõe métodos de classificação e priorização de conteúdo,  e formas de auto-regulação para o portal. O presente produto apresenta uma seleção de métodos para classificação de conteúdo. Dadas a pertinência para o contexto participativo e a simplicidade, são apresentadas a classificação via 1) conectividade dos autores e 2) características dos documentos.
 \subsection{Contexto e importância do Produto}
 \begin{itemize}
     \item Este Produto, através da classificação de conteúdos, visa 1) facilitar a assimilação das informações pelos participantes; 2) explicitar propriedades do sistema considerado; 3) permitir observação de conteúdos produzidos por nichos ou características em comum.
@@ -85,11 +86,12 @@ Os dados triplificados podem ser usados diretamente em algum aplicativo ou progr
 \subsubsection{Classificação dos textos (mineração de texto / processamento de linguagem natural)}
 As possibilidades de classificação de conteúdo com base nos textos são inúmeras. Nesta subsubseção, são apontados alguns dos caminhos considerados.
 \begin{itemize}
-    \item Através de uso de textos previamente classificados, pode-se treinar classificadores automatizados. Este é o chamado “aprendizado supervisionado” de máquina. As técnicas atualmente em uso são inúmeras (redes neurais, algorítmos genéticos, etc). Para  exemplificação, foi implementado uma aprendizagem Bayesiana. {\bf Veja nos anexos}.
-    \item A classificação de objetos não classificados previamente, com base nas propriedades dos objetos somente, é conhecido como “aprendizado não supervisionado”. Pode-se impor a existencia de 2 classes (com base no balanço estrutural[easley]), ou mais classes, de forma a maximizar a dispersão inter-classe e diminuir a dispersão intra-classe. Este processo pode ser útil para observar nichos nas atividades, mesmo sem um conjunto de mensagens classificadas de antemão.
+    \item Através de uso de textos previamente classificados, pode-se treinar classificadores automatizados. Este é o chamado “aprendizado supervisionado” de máquina. As técnicas atualmente em uso são inúmeras (redes neurais, algorítmos genéticos, etc). Para  exemplificação, foi implementado uma aprendizagem Bayesiana. {\bf Veja a implementação nos anexos}.
+    \item A classificação de objetos sem classes previamente definidas, com base somente nas propriedades dos objetos, é conhecido como ``aprendizado não supervisionado''. Pode-se impor a existencia de 2 classes (com base no balanço estrutural[easley]), ou mais classes, de forma a maximizar a dispersão inter-classe e diminuir a dispersão intra-classe. Este processo pode ser útil para observar nichos nas atividades, mesmo sem um conjunto de mensagens classificadas de antemão.
     \item Classificação de mensagens similares às escolhidas. Esta distância pode ser euclidiana no espaço de contagem de palavras, ou calculada via redes semânticas (e.g. wordnet).
     \item Classificação via contexto similar da palavra ou via simples incidência da palavra. Como buscadores usuais, com capacidades mais amplas para lidar com contexto (outras palavras, tipo de autor, classificação da mensagem).
     \item Ranqueamentos para mensagens, autores e palavras:
+
 \begin{itemize}
         \item Mais adjetivos, mais substantivos, mais pontuações, etc. 
         \item Maior tamanho médio das palavras ou variedade de tamahos (desvio padrão). {\bf Ver nos anexos}.
@@ -178,8 +180,34 @@ A categorização de conteúdo do Participa.br pode ser feita de forma distribu�
 \printindex
 \newpage
 \input{listadeanexos.tex}
-%\appendix
+\appendix
 %\appendixpage
+\newcommand\invisiblesection[1]{%
+  \refstepcounter{section}%
+  \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}%
+  \sectionmark{#1}}
+\newcommand\invisiblesubsection[1]{%
+  \refstepcounter{subsection}%
+  \addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}#1}%
+  \subsectionmark{#1}}
+
 %\input{appendix.tex}
 
+\invisiblesection{Classificação via etiquetas e personas}
+%\section*{1-Classificação via etiquetas e personas}
+\includepdf[pages=-]{1-ExemploDeClassificacaoTexto.pdf}
+\invisiblesection{Seleção por ranqueamento e limiar}
+
+\includepdf[pages=-]{2-SelecaoRanqueamento.pdf}
+\invisiblesection{Redes de interação e de amizade}
+\invisiblesubsection{Ordenação (ranking) por centralidade}
+\includepdf[pages=-]{3-RedesAmizadeInteracao.pdf}
+\invisiblesubsection{Setores conectivos}
+\invisiblesubsection{Detecção de comunidades}
+\invisiblesection{Classificação de conteúdo via conectividade dos participantes}
+\includepdf[pages=-]{4-ClassificacaoConteudoAutor.pdf}
+\invisiblesection{Teste de conexão com o endpoint SparQL que distribui dados do Partipa.br}
+\includepdf[pages=-]{5-SparQLTest.pdf}
+\section{Experimentos online}
+MMISSA, MM, AARS, MyNSA, brservers, IPython, Jena.
 \end{document}
